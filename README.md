@@ -16,3 +16,7 @@ Primeiro, crie uma rede para conectar a API ao banco de dados:
 
 ```$ docker-compose up```
 
+Após isso, acesse a aplicação na seguinte URL:
+
+http://localhost:3000
+
