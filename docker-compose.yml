@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+  database:
+    container_name: database
+    restart: always
+    image: postgres
+    environment:
+      POSTGRES_DB: trabalhofinal
+      POSTGRES_USER: trabalhofinal
+      POSTGRES_PASSWORD: trabalhofinal2020
+    ports:
+      - '5432:5432'
+    networks:
+      - network-api
+    volumes:
+      - ./dados:/var/lib/postgresql/data
+
+  api:
+    container_name: api
+    image: api_image
+    build: .
+    command: bash -c "rake db:create && rake db:migrate && rails server -b 0.0.0.0"
+    volumes:
+      - .:/app:cached
+    ports:
+      - '3000:3000'
+    depends_on:
+      - database
+    environment:
+      RAILS_ENV: development
+      DATABASE_NAME: trabalhofinal
+      DATABASE_USER: trabalhofinal
+      DATABASE_PASSWORD: trabalhofinal2020
+      DATABASE_HOST: database
+    networks:
+      - network-api
+
+networks:
+  network-api:
+    external:
+      name: network-api

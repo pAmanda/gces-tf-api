@@ -182,6 +182,7 @@ GEM
 
 PLATFORMS
   ruby
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
@@ -200,7 +201,7 @@ DEPENDENCIES
   tzinfo-data
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.5.7p206
 
 BUNDLED WITH
-   2.1.4
+   2.2.0
