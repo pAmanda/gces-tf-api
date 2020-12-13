@@ -20,24 +20,20 @@ cache:
 
 before_install:
   - gem install bundler:2.2.0
+  - bundle install
 
 stages:
-  - Build
-  - Test
+  - Build and Test
   - Quality gate
 
 jobs:
   include:
-    - stage: Build
-      name: Build
+    - stage: Build and Test
+      name: Build and Test
       script:
-        - bundle install
-        - psql -c 'create database travis_ci_test;' -U postgres
+        - bundle exec rake db:create RAILS_ENV=test
+        # - psql -c 'create database travis_ci_test;' -U postgres
         - bundle exec rake db:migrate RAILS_ENV=test
-
-    - stage: Test
-      name: Test
-      script:
         - bundle exec rails test
 
     - stage: Quality gate
