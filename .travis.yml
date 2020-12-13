@@ -7,10 +7,14 @@ rvm:
 
 services:
   - docker
+  - postgresql
 
 before_install:
   - gem install bundler:2.2.0
   - bundle install
+  - psql -c 'create database travis_ci_test;' -U postgres
+  - cp config/database.yml.travis config/database.yml
+
 
 stages:
   # - Build
