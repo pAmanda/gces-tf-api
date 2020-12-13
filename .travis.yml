@@ -13,29 +13,34 @@ addons:
   sonarcloud:
     organization: "pamanda"
     token: ${SONAR_TOKEN}
+  
+cache:
+  directories:
+    - bundler
 
 before_install:
   - gem install bundler:2.2.0
-  - bundle install
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - bundle exec rake db:migrate RAILS_ENV=test
 
 stages:
-  # - Build
+  - Build
   - Test
   - Quality gate
 
 jobs:
   include:
-    # - stage: Build
-    #   name: Build
-    #   script:
-    #     - yarn build
+    - stage: Build
+      name: Build
+      script:
+        - bundle install
+        - psql -c 'create database travis_ci_test;' -U postgres
+        - bundle exec rake db:migrate RAILS_ENV=test
 
     - stage: Test
+      name: Test
       script:
         - bundle exec rails test
 
     - stage: Quality gate
+      name: Quality gate
       script:
         - sonar-scanner

@@ -3,6 +3,7 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=pAmanda_gces-tf-api&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=pAmanda_gces-tf-api)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=pAmanda_gces-tf-api&metric=code_smells)](https://sonarcloud.io/dashboard?id=pAmanda_gces-tf-api)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=pAmanda_gces-tf-api&metric=bugs)](https://sonarcloud.io/dashboard?id=pAmanda_gces-tf-api)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=pAmanda_gces-tf-api&metric=alert_status)](https://sonarcloud.io/dashboard?id=pAmanda_gces-tf-api)
 
 # Trabalho Final da Disciplina GCES
 
