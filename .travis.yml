@@ -1,0 +1,32 @@
+dist: trusty
+language:
+  - ruby
+
+rvm:
+  - 2.5.7
+
+services:
+  - docker
+
+before_install:
+  - bundle install
+
+stages:
+  # - Build
+  - Test
+  # - Quality gate
+
+jobs:
+  include:
+    # - stage: Build
+    #   name: Build
+    #   script:
+    #     - yarn build
+
+    - stage: Test
+      script:
+        - bundle exec rails test
+
+    # - stage: Quality gate
+    #   script:
+    #     - sonar-scanner
