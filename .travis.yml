@@ -35,6 +35,8 @@ jobs:
         - bundle exec rake db:migrate RAILS_ENV=test
         - bundle exec rails test
         - ls -a
+        - cd coverage/
+        - ls -a
 
     - stage: Quality gate
       name: Quality gate
