@@ -17,6 +17,7 @@ addons:
 cache:
   directories:
     - bundler
+    - coverage
 
 before_install:
   - gem install bundler:2.2.0
@@ -34,9 +35,6 @@ jobs:
         - bundle exec rake db:create RAILS_ENV=test
         - bundle exec rake db:migrate RAILS_ENV=test
         - bundle exec rails test
-        - ls -a
-        - cd coverage/
-        - ls -a
 
     - stage: Quality gate
       name: Quality gate
