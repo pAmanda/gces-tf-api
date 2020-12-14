@@ -16,7 +16,7 @@ addons:
   
 cache:
   directories:
-    - bundler
+    # - bundler
     - coverage
 
 before_install:

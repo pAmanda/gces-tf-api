@@ -2,9 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'simplecov'
-require 'simplecov-json'
 
-SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
 SimpleCov.start
 
 class ActiveSupport::TestCase
