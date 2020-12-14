@@ -32,9 +32,9 @@ jobs:
       name: Build and Test
       script:
         - bundle exec rake db:create RAILS_ENV=test
-        # - psql -c 'create database travis_ci_test;' -U postgres
         - bundle exec rake db:migrate RAILS_ENV=test
         - bundle exec rails test
+        - ls -a
 
     - stage: Quality gate
       name: Quality gate
