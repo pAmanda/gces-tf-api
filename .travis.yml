@@ -35,9 +35,9 @@ jobs:
         - bundle exec rake db:create RAILS_ENV=test
         - bundle exec rake db:migrate RAILS_ENV=test
         - bundle exec rails test
+        - cd coverage
+        - pwd
         - ls -a
-        - ls -a coverage/
-        - cat coverage/.resultset.json
 
     - stage: Quality gate
       name: Quality gate
