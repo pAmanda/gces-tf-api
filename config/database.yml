@@ -1,20 +1,33 @@
-default: &default
+default:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['DATABASE_NAME'] %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: '<%= ENV['DATABASE_NAME'] %>'
+  username: '<%= ENV['DATABASE_USER'] %>'
+  password: '<%= ENV['DATABASE_PASSWORD'] %>'
   port: 5432
-  host: <%= ENV['DATABASE_HOST'] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: '<%= ENV['DATABASE_HOST'] %>'
+  pool: 5
   timeout: 5000
-
 development:
-  <<: *default
-
+  adapter: postgresql
+  encoding: unicode
+  database: '<%= ENV['DATABASE_NAME'] %>'
+  username: '<%= ENV['DATABASE_USER'] %>'
+  password: '<%= ENV['DATABASE_PASSWORD'] %>'
+  port: 5432
+  host: '<%= ENV['DATABASE_HOST'] %>'
+  pool: 5
+  timeout: 5000
 test:
   adapter: postgresql
   database: travis_ci_test
-
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: '<%= ENV['DATABASE_NAME'] %>'
+  username: '<%= ENV['DATABASE_USER'] %>'
+  password: '<%= ENV['DATABASE_PASSWORD'] %>'
+  port: 5432
+  host: '<%= ENV['DATABASE_HOST'] %>'
+  pool: 5
+  timeout: 5000
