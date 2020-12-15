@@ -1,9 +1,13 @@
 dist: trusty
 language:
   - ruby
+  - python
 
 rvm:
   - 2.5.7
+
+python:
+  - '3.6'
 
 services:
   - docker
@@ -22,10 +26,14 @@ cache:
 before_install:
   - gem install bundler:2.2.0
   - bundle install
+  - pip install requests
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 stages:
   - Build and Test
   - Quality gate
+  - Docker
+  - Deploy
 
 jobs:
   include:
@@ -40,3 +48,18 @@ jobs:
       name: Quality gate
       script:
         - sonar-scanner
+
+    - stage: Docker
+      name: Docker
+      if: (NOT type IN (pull_request)) AND branch = master
+      script:
+        # build docker image
+        - docker build -t "$DOCKER_USERNAME"/"$SERVICE_IMAGE":"$TAG_NAME" .
+
+        # push image to Docker Hub
+        - docker push "$DOCKER_USERNAME"/"$SERVICE_IMAGE":"$TAG_NAME"
+
+    - stage: Deploy
+      name: Deploy
+      if: (NOT type IN (pull_request)) AND branch = master
+      script: python ./upgrade_service.py
